@@ -906,7 +906,7 @@ class EarlyExitFinetuneRecipeDistributed(FTRecipeInterface):
                 # free logits otherwise it peaks backward memory
                 del logits
 
-                running_loss += current_loss
+                running_loss += current_loss.detach()
 
                 # For optimizer in backward, we need to normalize before calling backward
                 # This case and gradient accumulation are mutually exclusive
